@@ -22,20 +22,20 @@ SELECT * FROM GAME WHERE GAME_DATE>="2020-01-01" AND GAME_DATE<="2020-03-01" ORD
 -- 11. **Write a query to display the names of players who are Raiders. Display the records sorted in ascending order based on player name.**
 SELECT NAME FROM PLAYERS WHERE SKILL_ID=5 ORDER BY NAME ASC;
 -- 12. **Write a query to display the event number, raid points and defence points scored in the first innings of the game that was played on `2020-01-26`. Display the records sorted in ascending order based on event number.**
-SELECT EVENT.EVENT_NO,EVENT.RAID_POINTS,EVENT.DEFENDING_POINTS,GAME.FIRST_INNINGS_ID,GAME.GAME_DATE FROM EVENT INNER JOIN GAME ON EVENT.ID=GAME.ID WHERE GAME_DATE='2020-01-26" ORDER BY EVENT_NO ASC;
+SELECT EVENT.EVENT_NO,EVENT.RAID_POINTS,EVENT.DEFENDING_POINTS,GAME.FIRST_INNINGS_ID,GAME.GAME_DATE FROM EVENT OUTER JOIN GAME ON EVENT.ID=GAME.ID WHERE GAME_DATE='2020-01-26" ORDER BY EVENT_NO ASC;
 -- 13. **Write a query to display the name of the winner team in the game played on `2020-03-09`. Display the records sorted in ascending order based on team name.**
-SELECT TEAM.NAME from ((TEAM INNER JOIN OUTCOME ON OUTCOME.WINNER_TEAM_ID=TEAM.ID) INNER JOIN GAME ON GAME.ID=OUTCOME.WINNER_TEAM_ID) WHERE GAME.GAME_DATE="2020-03-01";
+SELECT TEAM.NAME from ((TEAM OUTER JOIN OUTCOME ON OUTCOME.WINNER_TEAM_ID=TEAM.ID) OUTER JOIN GAME ON GAME.ID=OUTCOME.WINNER_TEAM_ID) WHERE GAME.GAME_DATE="2020-03-01";
 -- 14. **Write a query to display the names of players who were the player of the match in the game played on 2020-03-09'. Display the records sorted in ascending order based on player name.**
-SELECT PLAYER.NAME FROM PLAYER INNER JOIN GAME ON GAME.TEAM_ID_1=PLAYER.TEAM_ID WHERE GAME.GAME_DATE="202-03-09";  
+SELECT PLAYER.NAME FROM PLAYER OUTER JOIN GAME ON GAME.TEAM_ID_1=PLAYER.TEAM_ID WHERE GAME.GAME_DATE="202-03-09";  
 -- 15. **Write a query to display the names of players who are All rounders. Display the records sorted in ascending order based on player name.**
-SELECT PLAYER.NAME FROM PLAYER INNER JOIN SKILL ON SKILL.id=PLAYER.SKILL_ID WHERE SKILL.name="ALL ROUNDERS";
+SELECT PLAYER.NAME FROM PLAYER OUTER JOIN SKILL ON SKILL.id=PLAYER.SKILL_ID WHERE SKILL.name="ALL ROUNDERS";
 -- 16. **Write a query to display the venue names for all the games that were played on `2020-03-09`. Display the records sorted in ascending order based on venue name.**
-SELECT VENUE.STADIUM_NAME FROM VENUE INNER JOIN GAME ON GAME.VENUE_ID=VENUE.CITY_ID WHERE GAME.GAME_DATE="2020-03-09";
+SELECT VENUE.STADIUM_NAME FROM VENUE OUTER JOIN GAME ON GAME.VENUE_ID=VENUE.CITY_ID WHERE GAME.GAME_DATE="2020-03-09";
 -- 17. **Write a query to display the Coach's name of the team `Iran`**
-SELECT TEAM.COACH FROM TEAM INNER JOIN PLAYER ON PLAYER.TEAM_ID=TEAM.ID WHERE PLAYER.COUNTRY="IRAN";
+SELECT TEAM.COACH FROM TEAM OUTER JOIN PLAYER ON PLAYER.TEAM_ID=TEAM.ID WHERE PLAYER.COUNTRY="IRAN";
 -- 18. **Write a query to display the event number and the defence points of `Fazel Atrachali` in each event. Display the records sorted in ascending order based on event number.**
-SELECT EVENT.EVENT_NO, EVENT.DEFENDING_POINTS FROM EVENT INNER JOIN PLAYER ON PLAYER.ID=EVENT.RAIDER_ID WHERE PLAYER.NAME=`Fazel Atrachali`;
+SELECT EVENT.EVENT_NO, EVENT.DEFENDING_POINTS FROM EVENT OUTER JOIN PLAYER ON PLAYER.ID=EVENT.RAIDER_ID WHERE PLAYER.NAME=`Fazel Atrachali`;
 -- 19. **Write a query to display the names of the Winning teams in the month of March 2020. Display the records sorted in ascending order based on team name.**
-SELECT TEAM.NAME FROM((TEAM INNER JOIN OUTCOME ON OUTCOME.WINNER_TEAM_ID=TEAM.ID) INNER JOIN GAME ON GAME.TEAM_ID_1=TEAM.ID) WHERE GAME.GAME_DATE="2020-03-01";
+SELECT TEAM.NAME FROM((TEAM OUTER JOIN OUTCOME ON OUTCOME.WINNER_TEAM_ID=TEAM.ID) OUTER JOIN GAME ON GAME.TEAM_ID_1=TEAM.ID) WHERE GAME.GAME_DATE="2020-03-01";
 -- 20. **Write a query to display the names of players who were the player of the match in the games held in March 2020. Display the records sorted in ascending order based on player name.**
-SELECT PLAYER.NAME FROM PLAYER INNER JOIN GAME ON GAME.TEAM_ID_1=PLAYER.ID WHERE GAME.GAME_DATE="2020-03-01";
+SELECT PLAYER.NAME FROM PLAYER OUTER JOIN GAME ON GAME.TEAM_ID_1=PLAYER.ID WHERE GAME.GAME_DATE="2020-03-01";
